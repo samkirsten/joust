@@ -17,6 +17,7 @@ import { Socket } from 'ng-socket-io';
 export class JoinGamePage {
 
     gameId = '';
+    userName = '';
 
     constructor(public navCtrl: NavController, public navParams: NavParams, private socket: Socket) {
     }

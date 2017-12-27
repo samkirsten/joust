@@ -50,7 +50,7 @@ export class GamePage {
             this.socket.on('message', (data) => {
                 observer.next(data);
             });
-        })
+        });
         return observable;
     }
 
