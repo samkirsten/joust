@@ -16,33 +16,15 @@ io.on('connection', (socket) => {
         io.emit('message', {text: message.text, from: socket.nickname, created: new Date()});
     });
 
-    socket.on('start-game', (command) => {
-        io.emit('');
-    });
-
-    socket.on('join-game', function (data) {
-        socket.join(data.gameId);
-        socket.broadcast.to(data.room).emit('player-joined', data.user);
-    });
-
-    socket.on('create-game', function (data) {
-        socket.join(data.gameId);
-    });
-
-    socket.on('start-game', function (data) {
-       socket.broadcast.to(data.room).emit('game-started');
-    });
-
-    socket.on('user-moved', function (data) {
-       socket.broadcast.to(data.room).emit('player-out', data.user);
-    });
-
-    socket.on('game-end', function (data) {
-        socket.broadcast.to(data.room).emit('game-over', data.results);
+    socket.on('create-game', function (gameId) {
+        socket.join(gameId);
     });
 
 });
 
+socket.on('start-game', (command) => {
+    io.emit('');
+});
 
 
 

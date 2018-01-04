@@ -26,9 +26,9 @@ export class JoinGamePage {
         console.log('ionViewDidLoad JoinGamePage');
     }
 
-    joinChat() {
+    joinGame() {
         this.socket.connect();
-        this.socket.emit('set-nickname', this.gameId);
+        this.socket.emit('join-game', {room: this.gameId, user: this.userName});
         this.navCtrl.push('GamePage', { gameId: this.gameId });
     }
 

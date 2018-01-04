@@ -22,5 +22,5 @@
         <ion-label stacked>Enter your name</ion-label>
         <ion-input type="text" [(ngModel)]="userName" placeholder="Your name"></ion-input>
     </ion-item>
-    <button ion-button full (click)="joinChat()" [disabled]="nickname === ''">Join Game {{ gameId }}</button>
+    <button ion-button full (click)="joinGame()" [disabled]="nickname === ''">Join Game {{ gameId }}</button>
 </ion-content>
