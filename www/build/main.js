@@ -21,6 +21,9 @@ webpackEmptyAsyncContext.id = 119;
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
+	"../pages/game-menu/game-menu.module": [
+		326
+	],
 	"../pages/game/game.module": [
 		161
 	],
@@ -199,19 +202,18 @@ var JoinGamePage = (function () {
     JoinGamePage.prototype.ionViewDidLoad = function () {
         console.log('ionViewDidLoad JoinGamePage');
     };
-    JoinGamePage.prototype.joinGame = function () {
+    JoinGamePage.prototype.joinChat = function () {
         this.socket.connect();
-        this.socket.emit('join-game', { room: this.gameId, user: this.userName });
+        this.socket.emit('set-nickname', this.gameId);
         this.navCtrl.push('GamePage', { gameId: this.gameId });
     };
     JoinGamePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'page-join-game',template:/*ion-inline-start:"/Users/samkirsten/Projects/joust/src/pages/join-game/join-game.html"*/'<!--\n  Generated template for the JoinGamePage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>joinGame</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n    <ion-item>\n        <ion-label stacked>Enter the game name</ion-label>\n        <ion-input type="text" [(ngModel)]="gameId" placeholder="Game ID"></ion-input>\n    </ion-item>\n    <ion-item>\n        <ion-label stacked>Enter your name</ion-label>\n        <ion-input type="text" [(ngModel)]="userName" placeholder="Your name"></ion-input>\n    </ion-item>\n    <button ion-button full (click)="joinGame()" [disabled]="nickname === \'\'">Join Game {{ gameId }}</button>\n</ion-content>\n'/*ion-inline-end:"/Users/samkirsten/Projects/joust/src/pages/join-game/join-game.html"*/,
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2_ng_socket_io__["Socket"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ng_socket_io__["Socket"]) === "function" && _c || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2_ng_socket_io__["Socket"]])
     ], JoinGamePage);
     return JoinGamePage;
-    var _a, _b, _c;
 }());
 
 //# sourceMappingURL=join-game.js.map
@@ -225,7 +227,7 @@ var JoinGamePage = (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TabsPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__about_about__ = __webpack_require__(223);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__join_game_join_game__ = __webpack_require__(178);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__game_menu_game_menu__ = __webpack_require__(327);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__home_home__ = __webpack_require__(224);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -244,7 +246,7 @@ var TabsPage = (function () {
     function TabsPage() {
         this.tab1Root = __WEBPACK_IMPORTED_MODULE_3__home_home__["a" /* HomePage */];
         this.tab2Root = __WEBPACK_IMPORTED_MODULE_1__about_about__["a" /* AboutPage */];
-        this.tab3Root = __WEBPACK_IMPORTED_MODULE_2__join_game_join_game__["a" /* JoinGamePage */];
+        this.tab3Root = __WEBPACK_IMPORTED_MODULE_2__game_menu_game_menu__["a" /* GameMenuPage */];
     }
     TabsPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({template:/*ion-inline-start:"/Users/samkirsten/Projects/joust/src/pages/tabs/tabs.html"*/'<ion-tabs>\n  <ion-tab [root]="tab1Root" tabTitle="Home" tabIcon="home"></ion-tab>\n  <ion-tab [root]="tab2Root" tabTitle="About" tabIcon="information-circle"></ion-tab>\n  <ion-tab [root]="tab3Root" tabTitle="Game" tabIcon="contacts"></ion-tab>\n</ion-tabs>\n'/*ion-inline-end:"/Users/samkirsten/Projects/joust/src/pages/tabs/tabs.html"*/
@@ -362,12 +364,14 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_ng_socket_io___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11_ng_socket_io__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_join_game_join_game_module__ = __webpack_require__(177);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_host_game_host_game_module__ = __webpack_require__(176);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_game_menu_game_menu_module__ = __webpack_require__(326);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -401,12 +405,14 @@ var AppModule = (function () {
                     links: [
                         { loadChildren: '../pages/game/game.module#GamePageModule', name: 'GamePage', segment: 'game', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/host-game/host-game.module#HostGamePageModule', name: 'HostGamePage', segment: 'host-game', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/join-game/join-game.module#JoinGamePageModule', name: 'JoinGamePage', segment: 'join-game', priority: 'low', defaultHistory: [] }
+                        { loadChildren: '../pages/join-game/join-game.module#JoinGamePageModule', name: 'JoinGamePage', segment: 'join-game', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/game-menu/game-menu.module#GameMenuPageModule', name: 'GameMenuPage', segment: 'game-menu', priority: 'low', defaultHistory: [] }
                     ]
                 }),
                 __WEBPACK_IMPORTED_MODULE_11_ng_socket_io__["SocketIoModule"].forRoot(config),
                 __WEBPACK_IMPORTED_MODULE_13__pages_host_game_host_game_module__["HostGamePageModule"],
                 __WEBPACK_IMPORTED_MODULE_12__pages_join_game_join_game_module__["JoinGamePageModule"],
+                __WEBPACK_IMPORTED_MODULE_14__pages_game_menu_game_menu_module__["GameMenuPageModule"],
                 __WEBPACK_IMPORTED_MODULE_8__pages_game_game_module__["GamePageModule"]
             ],
             bootstrap: [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["a" /* IonicApp */]],
@@ -569,19 +575,13 @@ var HostGamePage = (function () {
     HostGamePage.prototype.ionViewDidLoad = function () {
         console.log('ionViewDidLoad HostGamePage');
     };
-    HostGamePage.prototype.hostGame = function () {
-        this.socket.connect();
-        this.socket.emit('create-game', { room: this.gameId, user: this.userName });
-        this.navCtrl.push('GamePage', { gameId: this.gameId });
-    };
     HostGamePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-host-game',template:/*ion-inline-start:"/Users/samkirsten/Projects/joust/src/pages/host-game/host-game.html"*/'<!--\n  Generated template for the HostGamePage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>hostGame</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n</ion-content>\n'/*ion-inline-end:"/Users/samkirsten/Projects/joust/src/pages/host-game/host-game.html"*/,
+            selector: 'page-host-game',template:/*ion-inline-start:"/Users/samkirsten/Projects/joust/src/pages/host-game/host-game.html"*/'<!--\n  Generated template for the HostGamePage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>Host Game</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n    <ion-item>\n        <ion-label stacked>Enter the game name</ion-label>\n        <ion-input type="text" [(ngModel)]="gameId" placeholder="Game ID"></ion-input>\n    </ion-item>\n    <ion-item>\n        <ion-label stacked>Enter your name</ion-label>\n        <ion-input type="text" [(ngModel)]="userName" placeholder="Your name"></ion-input>\n    </ion-item>\n    <button ion-button full (click)="joinGame()" [disabled]="nickname === \'\'">Join Game {{ gameId }}</button>\n</ion-content>'/*ion-inline-end:"/Users/samkirsten/Projects/joust/src/pages/host-game/host-game.html"*/,
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */]) === "function" && _b || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */]])
     ], HostGamePage);
     return HostGamePage;
-    var _a, _b;
 }());
 
 //# sourceMappingURL=host-game.js.map
@@ -666,6 +666,89 @@ var ContactPage = (function () {
 }());
 
 //# sourceMappingURL=contact.js.map
+
+/***/ }),
+
+/***/ 326:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GameMenuPageModule", function() { return GameMenuPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__game_menu__ = __webpack_require__(327);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+var GameMenuPageModule = (function () {
+    function GameMenuPageModule() {
+    }
+    GameMenuPageModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
+            declarations: [
+                __WEBPACK_IMPORTED_MODULE_2__game_menu__["a" /* GameMenuPage */],
+            ],
+            imports: [
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__game_menu__["a" /* GameMenuPage */]),
+            ],
+        })
+    ], GameMenuPageModule);
+    return GameMenuPageModule;
+}());
+
+//# sourceMappingURL=game-menu.module.js.map
+
+/***/ }),
+
+/***/ 327:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return GameMenuPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(14);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+/**
+ * Generated class for the GameMenuPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var GameMenuPage = (function () {
+    function GameMenuPage(navCtrl, navParams) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+    }
+    GameMenuPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad GameMenuPage');
+    };
+    GameMenuPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'page-game-menu',template:/*ion-inline-start:"/Users/samkirsten/Projects/joust/src/pages/game-menu/game-menu.html"*/'<!--\n  Generated template for the GameMenuPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>gameMenu</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n</ion-content>\n'/*ion-inline-end:"/Users/samkirsten/Projects/joust/src/pages/game-menu/game-menu.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */]])
+    ], GameMenuPage);
+    return GameMenuPage;
+}());
+
+//# sourceMappingURL=game-menu.js.map
 
 /***/ })
 

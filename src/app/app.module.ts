@@ -17,6 +17,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { SocketIoModule, SocketIoConfig } from 'ng-socket-io';
 import {JoinGamePageModule} from "../pages/join-game/join-game.module";
 import {HostGamePageModule} from "../pages/host-game/host-game.module";
+import {GameMenuPageModule} from "../pages/game-menu/game-menu.module";
 const config: SocketIoConfig = { url: 'http://localhost:3001', options: {} };
 
 @NgModule({
@@ -33,8 +34,8 @@ const config: SocketIoConfig = { url: 'http://localhost:3001', options: {} };
       SocketIoModule.forRoot(config),
       HostGamePageModule,
       JoinGamePageModule,
+      GameMenuPageModule,
       GamePageModule
-
   ],
   bootstrap: [IonicApp],
   entryComponents: [

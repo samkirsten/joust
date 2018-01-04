@@ -7,12 +7,20 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>hostGame</ion-title>
+    <ion-title>Host Game</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-
+    <ion-item>
+        <ion-label stacked>Enter the game name</ion-label>
+        <ion-input type="text" [(ngModel)]="gameId" placeholder="Game ID"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label stacked>Enter your name</ion-label>
+        <ion-input type="text" [(ngModel)]="userName" placeholder="Your name"></ion-input>
+    </ion-item>
+    <button ion-button full (click)="joinGame()" [disabled]="nickname === ''">Join Game {{ gameId }}</button>
 </ion-content>
