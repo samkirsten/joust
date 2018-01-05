@@ -23,4 +23,12 @@ export class GameMenuPage {
     console.log('ionViewDidLoad GameMenuPage');
   }
 
+  openHostGame() {
+      this.navCtrl.push('HostGamePage')
+ }
+
+  openJoinGame() {
+    this.navCtrl.push('JoinGamePage');
+  }
+
 }
