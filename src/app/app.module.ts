@@ -10,6 +10,7 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { JoinGamePage } from "../pages/join-game/join-game";
 import { HostGamePage } from "../pages/host-game/host-game";
 import { GamePageModule } from "../pages/game/game.module";
+import { DeviceMotion } from '@ionic-native/device-motion';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -49,6 +50,7 @@ const config: SocketIoConfig = { url: 'http://localhost:3001', options: {} };
   providers: [
     StatusBar,
     SplashScreen,
+    DeviceMotion,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

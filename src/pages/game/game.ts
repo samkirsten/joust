@@ -19,11 +19,15 @@ export class GamePage {
 
     messages = [];
     gameId = '';
+    user = '';
+    host = false;
     message = '';
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private socket: Socket, private toastCtrl: ToastController) {
 
       this.gameId = this.navParams.get('gameId');
+      this.user = this.navParams.get('user');
+      this.host = this.navParams.get('host');
 
       this.getMessages().subscribe(message => {
           this.messages.push(message);

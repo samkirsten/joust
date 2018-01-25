@@ -29,7 +29,7 @@ export class JoinGamePage {
     joinGame() {
         this.socket.connect();
         this.socket.emit('join-game', {room: this.gameId, user: this.userName});
-        this.navCtrl.push('GamePage', { gameId: this.gameId });
+        this.navCtrl.push('GameJoinedPage', { gameId: this.gameId, user: this.userName, host: false });
     }
 
 }

@@ -21,24 +21,27 @@ io.on('connection', (socket) => {
     });
 
     socket.on('join-game', function (data) {
-        socket.join(data.gameId);
-        socket.broadcast.to(data.room).emit('player-joined', data.user);
+        socket.join(data.room);
+        //socket.broadcast.to(data.room).emit('player-joined', data.user);
+        io.to(data.room).emit('player-joined', data.user);
+        console.log('game-joined' + data.room + data.user);
     });
 
     socket.on('create-game', function (data) {
-        socket.join(data.gameId);
+        socket.join(data.room);
+        console.log('game-created' + data.room);
     });
 
     socket.on('start-game', function (data) {
-       socket.broadcast.to(data.room).emit('game-started');
+       io.to(data.room).emit('game-started');
     });
 
     socket.on('user-moved', function (data) {
-       socket.broadcast.to(data.room).emit('player-out', data.user);
+       io.to(data.room).emit('player-out', data.user);
     });
 
     socket.on('game-end', function (data) {
-        socket.broadcast.to(data.room).emit('game-over', data.results);
+        io.to(data.room).emit('game-over', data.results);
     });
 
 });

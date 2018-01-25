@@ -16,6 +16,9 @@ import { Socket } from 'ng-socket-io';
 })
 export class HostGamePage {
 
+    userName: '';
+    gameId: '';
+
     constructor(public navCtrl: NavController, public navParams: NavParams, private socket: Socket) {
     }
 
@@ -26,7 +29,7 @@ export class HostGamePage {
     hostGame() {
         this.socket.connect();
         this.socket.emit('create-game', {room: this.gameId, user: this.userName});
-        this.navCtrl.push('GamePage', { gameId: this.gameId });
+        this.navCtrl.push('GameHostedPage', { gameId: this.gameId, user: this.userName, host: true });
     }
 
 }
