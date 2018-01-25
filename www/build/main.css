@@ -25677,35 +25677,3 @@ ion-navbar.toolbar {
   min-height: calc(46px + constant(safe-area-inset-bottom));
   min-height: calc(46px + env(safe-area-inset-bottom));
 }
-
-page-game .user_name {
-  color: #afafaf;
-}
-
-page-game .message {
-  padding: 10px !important;
-  -webkit-transition: all 250ms ease-in-out !important;
-  transition: all 250ms ease-in-out !important;
-  border-radius: 10px !important;
-  margin-bottom: 4px !important;
-}
-
-page-game .my_message {
-  background: #488aff !important;
-  color: #000 !important;
-}
-
-page-game .other_message {
-  background: #dcdcdc !important;
-  color: #000 !important;
-}
-
-page-game .time {
-  color: #afafaf;
-  float: right;
-  font-size: small;
-}
-
-page-game .message_row {
-  background-color: #fff;
-}

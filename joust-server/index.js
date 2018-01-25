@@ -16,9 +16,9 @@ io.on('connection', (socket) => {
         io.emit('message', {text: message.text, from: socket.nickname, created: new Date()});
     });
 
-    socket.on('start-game', (command) => {
-        io.emit('');
-    });
+   // socket.on('start-game', (command) => {
+   //     io.emit('');
+   // });
 
     socket.on('join-game', function (data) {
         socket.join(data.room);

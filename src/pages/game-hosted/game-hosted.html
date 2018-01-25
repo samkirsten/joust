@@ -16,9 +16,7 @@
 <ion-content padding>
  <h1>{{textBanner}}</h1>
     <ion-list>
-        <button ion-item *ngFor="let item of players">
-            {{ item }}
-        </button>
+            <ion-item *ngFor="let player of players">{{player}}</ion-item>
     </ion-list>
-    <button ion-button block color="secondary">Start Game</button>
+    <button (click)="startGame()" ion-button block color="secondary">Start Game</button>
 </ion-content>

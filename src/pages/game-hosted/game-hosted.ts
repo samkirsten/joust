@@ -40,7 +40,8 @@ export class GameHostedPage {
         });
 
         this.getUsers().subscribe(data => {
-            let user = data['user'];
+            let user = data;
+            console.log(data);
             this.players.push(user);
             this.showToast('User joined: ' + user);
             if (data['event'] === 'left') {
@@ -48,7 +49,7 @@ export class GameHostedPage {
             } else {
 
             }
-            console.log(data);
+            console.log(this.players);
         });
 
  //       this.motionController = this.deviceMotion.watchAcceleration().subscribe((acceleration: DeviceMotionAccelerationData) => {

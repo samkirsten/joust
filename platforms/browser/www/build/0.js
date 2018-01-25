@@ -1,14 +1,14 @@
 webpackJsonp([0],{
 
-/***/ 330:
+/***/ 328:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GameJoinedPageModule", function() { return GameJoinedPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__game_joined__ = __webpack_require__(332);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__game_joined__ = __webpack_require__(330);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -38,18 +38,18 @@ var GameJoinedPageModule = (function () {
 
 /***/ }),
 
-/***/ 332:
+/***/ 330:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return GameJoinedPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ng_socket_io__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ng_socket_io__ = __webpack_require__(56);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ng_socket_io___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_ng_socket_io__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_Observable__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_Observable__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_Observable__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_device_motion__ = __webpack_require__(226);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_device_motion__ = __webpack_require__(225);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -82,13 +82,14 @@ var GameJoinedPage = (function () {
         this.gameId = '';
         this.user = '';
         this.host = false;
-        this.message = '';
+        this.status = 'Ready to Play';
         this.motionController = null;
         this.gameId = this.navParams.get('gameId');
         this.user = this.navParams.get('user');
         this.host = this.navParams.get('host');
         this.startGame().subscribe(function (message) {
             _this.messages.push("game started");
+            _this.startCountdown();
         });
         this.endGame().subscribe(function (message) {
             _this.messages.push("game ended");
@@ -126,8 +127,24 @@ var GameJoinedPage = (function () {
         });
         return observable;
     };
+    GameJoinedPage.prototype.startCountdown = function () {
+        var time = 5;
+        var me = this;
+        var timer = setInterval(function () {
+            time--;
+            me.status = time.toString();
+            if (time <= 0) {
+                clearInterval(timer);
+                me.gameStarted();
+            }
+        }, 1000);
+    };
+    GameJoinedPage.prototype.gameStarted = function () {
+        this.status = 'Game Started';
+    };
     GameJoinedPage.prototype.playerMoved = function () {
         this.socket.emit('user-moved', { room: this.gameId, user: this.user });
+        this.status = "game over";
     };
     GameJoinedPage.prototype.ionViewWillLeave = function () {
         this.socket.disconnect();
@@ -141,7 +158,7 @@ var GameJoinedPage = (function () {
     };
     GameJoinedPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-game-joined',template:/*ion-inline-start:"/Users/samkirsten/Projects/joust/src/pages/game-joined/game-joined.html"*/'<!--\n  Generated template for the GameJoinedPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>gameJoined</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n</ion-content>\n'/*ion-inline-end:"/Users/samkirsten/Projects/joust/src/pages/game-joined/game-joined.html"*/,
+            selector: 'page-game-joined',template:/*ion-inline-start:"/Users/samkirsten/Projects/joust/src/pages/game-joined/game-joined.html"*/'<!--\n  Generated template for the GameJoinedPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>Welcome to {{gameId}}</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n    <h1>{{status}}</h1>\n</ion-content>\n'/*ion-inline-end:"/Users/samkirsten/Projects/joust/src/pages/game-joined/game-joined.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2_ng_socket_io__["Socket"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* ToastController */], __WEBPACK_IMPORTED_MODULE_4__ionic_native_device_motion__["a" /* DeviceMotion */]])
     ], GameJoinedPage);

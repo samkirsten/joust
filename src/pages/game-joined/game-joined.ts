@@ -22,7 +22,7 @@ export class GameJoinedPage {
     gameId = '';
     user = '';
     host = false;
-    message = '';
+    status = 'Ready to Play';
 
     motionController = null;
 
@@ -34,6 +34,7 @@ export class GameJoinedPage {
 
         this.startGame().subscribe(message => {
             this.messages.push("game started");
+            this.startCountdown();
         });
 
         this.endGame().subscribe(message => {
@@ -77,8 +78,26 @@ export class GameJoinedPage {
         return observable;
     }
 
+    startCountdown() {
+        let time = 5;
+        var me = this;
+        let timer = setInterval(function(){
+            time--;
+            me.status = time.toString();
+            if(time <= 0) {
+                clearInterval(timer);
+                me.gameStarted();
+            }
+        },1000);
+    }
+
+    gameStarted() {
+        this.status = 'Game Started'
+    }
+
     playerMoved() {
         this.socket.emit('user-moved', { room: this.gameId, user: this.user });
+        this.status = "game over";
     }
 
     ionViewWillLeave() {

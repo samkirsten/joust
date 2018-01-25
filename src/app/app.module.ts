@@ -9,7 +9,6 @@ import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { JoinGamePage } from "../pages/join-game/join-game";
 import { HostGamePage } from "../pages/host-game/host-game";
-import { GamePageModule } from "../pages/game/game.module";
 import { DeviceMotion } from '@ionic-native/device-motion';
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -35,8 +34,7 @@ const config: SocketIoConfig = { url: 'http://localhost:3001', options: {} };
       SocketIoModule.forRoot(config),
       HostGamePageModule,
       JoinGamePageModule,
-      GameMenuPageModule,
-      GamePageModule
+      GameMenuPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
