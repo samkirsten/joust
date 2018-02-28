@@ -42,14 +42,19 @@ export class GameJoinedPage {
         });
 
         // Get the device current acceleration
-        //this.deviceMotion.getCurrentAcceleration().then(
-        //    (acceleration: DeviceMotionAccelerationData) => console.log(acceleration),
-        //    (error: any) => console.log(error)
-        //);
+        this.deviceMotion.getCurrentAcceleration().then(
+            (acceleration: DeviceMotionAccelerationData) => console.log(acceleration),
+            (error: any) => console.log(error)
+        );
 
         // Watch device acceleration
         this.motionController = this.deviceMotion.watchAcceleration().subscribe((acceleration: DeviceMotionAccelerationData) => {
             console.log(acceleration);
+            //if ((acceleration['x'] > 4) || (acceleration['y'] > 4) || (acceleration['z'] < 7)) {
+                //socket.emit('chat message', (ax + ay + ay));
+                //socket.emit('chat message', (name + navigator.platform));
+                //beenTouched();
+            //}
         });
 
         // Stop watch
@@ -58,9 +63,6 @@ export class GameJoinedPage {
     }
 
     startGame() {
-        //this.motionController = this.deviceMotion.watchAcceleration().subscribe((acceleration: DeviceMotionAccelerationData) => {
-        //    console.log(acceleration);
-        //});
         let observable = new Observable(observer => {
             this.socket.on('game-started', (data) => {
                 observer.next(data);

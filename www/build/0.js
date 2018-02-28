@@ -95,22 +95,21 @@ var GameJoinedPage = (function () {
             _this.messages.push("game ended");
         });
         // Get the device current acceleration
-        //this.deviceMotion.getCurrentAcceleration().then(
-        //    (acceleration: DeviceMotionAccelerationData) => console.log(acceleration),
-        //    (error: any) => console.log(error)
-        //);
+        this.deviceMotion.getCurrentAcceleration().then(function (acceleration) { return console.log(acceleration); }, function (error) { return console.log(error); });
         // Watch device acceleration
         this.motionController = this.deviceMotion.watchAcceleration().subscribe(function (acceleration) {
             console.log(acceleration);
+            //if ((acceleration['x'] > 4) || (acceleration['y'] > 4) || (acceleration['z'] < 7)) {
+            //socket.emit('chat message', (ax + ay + ay));
+            //socket.emit('chat message', (name + navigator.platform));
+            //beenTouched();
+            //}
         });
         // Stop watch
         //subscription.unsubscribe();
     }
     GameJoinedPage.prototype.startGame = function () {
         var _this = this;
-        //this.motionController = this.deviceMotion.watchAcceleration().subscribe((acceleration: DeviceMotionAccelerationData) => {
-        //    console.log(acceleration);
-        //});
         var observable = new __WEBPACK_IMPORTED_MODULE_3_rxjs_Observable__["Observable"](function (observer) {
             _this.socket.on('game-started', function (data) {
                 observer.next(data);

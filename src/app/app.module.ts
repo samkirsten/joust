@@ -13,6 +13,7 @@ import { DeviceMotion } from '@ionic-native/device-motion';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { HttpClientModule } from '@angular/common/http';
 
 import { SocketIoModule, SocketIoConfig } from 'ng-socket-io';
 import {JoinGamePageModule} from "../pages/join-game/join-game.module";
@@ -30,6 +31,7 @@ const config: SocketIoConfig = { url: 'http://localhost:3001', options: {} };
   ],
   imports: [
     BrowserModule,
+      HttpClientModule,
     IonicModule.forRoot(MyApp),
       SocketIoModule.forRoot(config),
       HostGamePageModule,
